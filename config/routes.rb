@@ -1,4 +1,5 @@
 Eventmapgui::Application.routes.draw do
+  resources :events
   root to: 'static_pages#home'
   match '/help',    to: 'static_pages#help',    via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
