@@ -33,4 +33,10 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def get_tweets
+    Twitter.search("to:justinbieber marry me", :count => 3, :result_type => "recent").results.map do |status|
+      "#{status.from_user}: #{status.text}"
+    end
+  end
+
 end

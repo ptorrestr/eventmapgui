@@ -11,6 +11,7 @@ gem 'activeresource', github: 'rails/activeresource'
 gem "therubyracer", :require => 'v8'
 gem 'gmaps4rails'
 gem 'rubyzip'
+gem 'twitter'
 #gem 'libv8', '3.16.14.1'
 #gem 'ref', '1.0.5'
 
