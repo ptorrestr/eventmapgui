@@ -1,0 +1,21 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "eventmap", root_path, id: "logo" %>
+      <nav>
+        <ul class="nav pull-right">
+          <li>
+            <%= link_to root_path do %>
+              <i class="icon-home icon-white"></i> Home
+            <% end %>
+          </li>
+          <li>
+            <%= link_to help_path do %>
+              <i class="icon-question-sign icon-white"></i> Help
+            <% end %>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
