@@ -1,18 +1,18 @@
 <h1>Events</h1>
 <div class="row">
-  <div class="span8">
+  <div class="span12">
+    <div class="row">
+      <div class="span9">
     <%= gmaps("map_options" => {"detect_location" => true, "auto_adjust" => "true"}, 
         "markers" => {"data" => @json, "options" => {"rich_marker" => true, "do_clustering" => true } }) %>
     <% content_for :scripts do %>
 <script type="text/javascript" charset="utf-8">
-function handleMarkerClickClosure(marker) {
+handleMarkerClickClosure = function(marker) {
   return function() {
-    var id = marker.title
-    $.get('/summary_panel', {id: marker.title}, function(data){
-      $('#summaryPanel').html(data);
-    });
+    $.get(this.href, {id: marker.title}, null, 'script');
+    return false;
   }
-}
+};
 
 Gmaps.map.callback = function() {
   for (var i = 0; i <  this.markers.length; ++i) {
@@ -21,41 +21,22 @@ Gmaps.map.callback = function() {
 };
 </script>
     <% end %>
-    <div id=summaryPanel class="container">
-      Please select an event
-    <div>
+      </div>
+      <div class="span3">lateral panel upper</div>
+    </div>
+    <div class="row">
+      <div id="summaryPanel" class="span9">
+        <% if @event %>
+          <%= render 'summary_panel' %>
+        <% else %>
+          Please, select an event
+        <% end %>
+      </div>
+      <div class="span3">lateral panel bottom</div>
+    </div>
   </div>
+</div>
+
   <!--<aside class="span4">
     <%= render 'lateral_panel' %>
   </aside>-->
-</div>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Address</th>
-    <th>Longitude</th>
-    <th>Latitude</th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @events.each do |event| %>
-  <tr>
-    <td><%= event.name %></td>
-    <td><%= event.address %></td>
-    <td><%= event.longitude %></td>
-    <td><%= event.latitude %></td>
-    <td><%= event.get_tweets %></td>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Event', new_event_path %>

@@ -1,0 +1,9 @@
+<li id="<%= tweet_item.id %>">
+  <span class="user">
+    <%= link_to tweet_item.twitter_screen_name, tweet_item.twitter_screen_name %>
+  </span>
+  <span class="content"><%= tweet_item.twitter_text %></span>
+  <span class="timestamp">
+    Created <%= time_ago_in_words(tweet_item.created_at) %> ago.
+  </span>
+</li>

@@ -1,12 +1,13 @@
 class Event < ActiveRecord::Base
   acts_as_gmappable
 
-  validates(:address, presence: true)
-  validates(:gmaps, presence: true)
-  validates(:latitude, presence: true)
-  validates(:longitude, presence: true)
-  validates(:name, presence: true)
-  validates(:alert, presence: true)
+  has_many :tweets, dependent: :destroy
+  validates :address, presence: true
+  validates :gmaps, presence: true
+  validates :latitude, presence: true
+  validates :longitude, presence: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :alert, presence: true
 
 
   def gmaps4rails_address
@@ -37,6 +38,12 @@ class Event < ActiveRecord::Base
     Twitter.search("to:justinbieber marry me", :count => 3, :result_type => "recent").results.map do |status|
       "#{status.from_user}: #{status.text}"
     end
+  end
+
+  def get_tweets2
+    p = Twitter.search("to:justinbieber marry me", :count => 3, :result_type => "recent").results
+    print(p)
+    return p
   end
 
 end

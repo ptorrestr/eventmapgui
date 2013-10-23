@@ -1,0 +1,46 @@
+<h3> Event: <%= @event.name %></h3>
+<div class="span3">
+  <h4>Tweets</h4>
+  <%= render 'shared/tweets' %>
+</div>
+<aside class="span5">
+  <h4>Data</h4>
+  <div class="accordion" id="accordion1">
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
+        Visual Summary
+        </a>
+      </div>
+      <div id="collapseOne" class="accordion-body collapse in">
+        <div class="accordion-inner">
+          Anim pariatur cliche...
+        </div>
+      </div>
+    </div>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">
+         Videos
+        </a>
+      </div>
+      <div id="collapseTwo" class="accordion-body collapse">
+        <div class="accordion-inner">
+          Anim pariatur cliche...
+        </div>
+      </div>
+    </div>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseTree">
+         Images
+        </a>
+      </div>
+      <div id="collapseTree" class="accordion-body collapse">
+        <div class="accordion-inner">
+          Anim pariatur cliche...
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>

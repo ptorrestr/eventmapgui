@@ -3,14 +3,12 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
-    #@json       = @events.to_gmaps4rails
     @json = @events.to_gmaps4rails do |event, marker|
-      #marker.infowindow render_to_string(:partial => "/events/summary_panel", :locals => { :event => event})
       marker.title "#{event.id}"
     end
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @events }
+    if params.has_key?(:id)
+      @event = Event.find(params[:id])
+      @tweets = @event.tweets.paginate(page: params[:page], per_page: 10)
     end
   end
 
@@ -82,11 +80,6 @@ class EventsController < ApplicationController
       format.html { redirect_to events_url }
       format.json { head :no_content }
     end
-  end
-
-  def summary_panel
-    @event = Event.find(params[:id])
-    render :partial => 'summary_panel', :locals => {:event => @event}
   end
 
   private

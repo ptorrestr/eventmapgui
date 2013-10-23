@@ -1,7 +1,7 @@
 Eventmapgui::Application.routes.draw do
+  resources :tweets
   resources :events
   root to: 'static_pages#home'
-  match '/summary_panel', to: 'events#summary_panel', via: 'get'
   match '/help',    to: 'static_pages#help',    via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
