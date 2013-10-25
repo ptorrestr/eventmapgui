@@ -1,46 +1,28 @@
-<h3> Event: <%= @event.name %></h3>
-<div class="span3">
-  <h4>Tweets</h4>
-  <%= render 'shared/tweets' %>
-</div>
-<aside class="span5">
-  <h4>Data</h4>
-  <div class="accordion" id="accordion1">
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
-        Visual Summary
-        </a>
-      </div>
-      <div id="collapseOne" class="accordion-body collapse in">
-        <div class="accordion-inner">
-          Anim pariatur cliche...
-        </div>
-      </div>
-    </div>
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">
-         Videos
-        </a>
-      </div>
-      <div id="collapseTwo" class="accordion-body collapse">
-        <div class="accordion-inner">
-          Anim pariatur cliche...
-        </div>
-      </div>
-    </div>
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseTree">
-         Images
-        </a>
-      </div>
-      <div id="collapseTree" class="accordion-body collapse">
-        <div class="accordion-inner">
-          Anim pariatur cliche...
-        </div>
-      </div>
-    </div>
+<h4>Data</h4>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#statistics" data-toggle="tab">Statistics</a></li>
+  <li><a href="#videos" data-toggle="tab">Videos</a></li>
+  <li><a href="#images" data-toggle="tab">Images</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="statistics">
+    <%= high_chart("my_id4", @chart1)  %>
+    <%= high_chart("my_id5", @chart2) do |c| %>
+      <%= raw "options.tooltip.formatter = function() {return '<b> YUPI!! '+ this.point.name +'</b>: '+ this.y +' %';}"  %>
+      <%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"  %>
+    <% end %>
   </div>
-</aside>
+  <div class="tab-pane" id="videos">
+    <iframe width="320" height="215" src="//www.youtube.com/embed/c0L0WIK2Ync" frameborder="0" allowfullscreen></iframe>
+    <iframe width="320" height="215" src="//player.vimeo.com/video/77097538?title=0&amp;byline=0&amp;portrait=0&amp;badge=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  </div>
+  <div class="tab-pane" id="images">
+    <a class="embedly-card" href="http://www.flickr.com/photos/54413120@N04/10416220975/">Rest ~explored~</a>
+<script>!function(a){var b="embedly-platform",c="script";if(!a.getElementById(b)){var d=a.createElement(c);d.id=b,d.src=("https:"===document.location.protocol?"https":"http")+"://cdn.embedly.com/widgets/platform.js";var e=document.getElementsByTagName(c)[0];e.parentNode.insertBefore(d,e)}}(document);</script>
+    <a class="embedly-card" href="http://www.flickr.com/photos/54413120@N04/10435699403/">Rest ~explored~</a>
+<script>!function(a){var b="embedly-platform",c="script";if(!a.getElementById(b)){var d=a.createElement(c);d.id=b,d.src=("https:"===document.location.protocol?"https":"http")+"://cdn.embedly.com/widgets/platform.js";var e=document.getElementsByTagName(c)[0];e.parentNode.insertBefore(d,e)}}(document);</script>
+    <a class="embedly-card" href="http://instagram.com/p/fs5EpVDckO/#">Rest ~explored~</a>
+<script>!function(a){var b="embedly-platform",c="script";if(!a.getElementById(b)){var d=a.createElement(c);d.id=b,d.src=("https:"===document.location.protocol?"https":"http")+"://cdn.embedly.com/widgets/platform.js";var e=document.getElementsByTagName(c)[0];e.parentNode.insertBefore(d,e)}}(document);</script>
+  </div>
+</div>

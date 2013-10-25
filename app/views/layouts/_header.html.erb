@@ -1,21 +1,6 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <%= link_to "eventmap", root_path, id: "logo" %>
-      <nav>
-        <ul class="nav pull-right">
-          <li>
-            <%= link_to root_path do %>
-              <i class="icon-home icon-white"></i> Home
-            <% end %>
-          </li>
-          <li>
-            <%= link_to help_path do %>
-              <i class="icon-question-sign icon-white"></i> Help
-            <% end %>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</header>
+<%= nav_bar :responsive => true, :inverse => true, :fixed => :top, :brand => "Event Map" do %>
+  <% menu_group :pull => :right do %>
+    <%= menu_item root_path do %> <%= glyph(:home,:white) %> Home <% end %>
+    <%= menu_item help_path do %> <%= glyph(:"question-sign",:white) %> Help <% end %>
+  <% end %>
+<% end %>

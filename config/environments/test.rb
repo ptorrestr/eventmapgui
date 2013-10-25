@@ -33,4 +33,7 @@ Eventmapgui::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # Set quiltro prefix for URL
+  config.action_controller.relative_url_root = '/map'
 end

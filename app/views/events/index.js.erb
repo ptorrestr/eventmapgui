@@ -1,2 +1,5 @@
-$("#summaryPanel").html("<%= escape_javascript(render("summary_panel")) %>");
+$("#tweetsPanel").html("<%= escape_javascript(render("tweets_panel")) %>");
+<% if @summary %>
+  $("#summaryPanel").html("<%= escape_javascript(render("summary_panel")) %>");
+<% end %>
 $.setAjaxPagination();

@@ -6,7 +6,7 @@ namespace :db do
 
     [Event, Tweet].each(&:delete_all)
 
-    Event.populate 10 do |event|
+    Event.populate 20 do |event|
       event.name = Faker::Name.name
       event.address = Faker::Address.city + Faker::Address.country
       event.longitude = Faker::Address.longitude

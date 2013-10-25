@@ -26,4 +26,7 @@ Eventmapgui::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  # Set quiltro prefix for URL
+  config.action_controller.relative_url_root = '/map'
 end

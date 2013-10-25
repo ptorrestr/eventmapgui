@@ -13,6 +13,7 @@ gem 'gmaps4rails', '1.5.6'
 gem 'rubyzip'
 gem 'twitter'
 gem 'populator'
+gem 'lazy_high_charts'
 #gem 'libv8', '3.16.14.1'
 #gem 'ref', '1.0.5'
 

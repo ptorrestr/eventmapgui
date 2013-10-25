@@ -6,10 +6,53 @@ class EventsController < ApplicationController
     @json = @events.to_gmaps4rails do |event, marker|
       marker.title "#{event.id}"
     end
+    # This value is used to send to js reaload summary
+    @summary = false 
     if params.has_key?(:id)
       @event = Event.find(params[:id])
       @tweets = @event.tweets.paginate(page: params[:page], per_page: 10)
+      if params[:summary] == "true"
+        #The parameter needs reaload summary, activate @summary and set false the parameter
+        @summary = true
+        params[:summary] = "false"
+        @chart1 = LazyHighCharts::HighChart.new('graph') do |f|
+          f.title({ :text=>"Keyword mentions"})
+          f.options[:xAxis][:categories] = ['Mon', 'Tues', 'Weds', 'Thurs', 'Fri']      
+          f.series(:type=> 'column',:name=> 'key1',:data=> [3, 2, 1, 3, 4])
+          f.series(:type=> 'column',:name=> 'key2',:data=> [2, 3, 5, 7, 6])
+          f.series(:type=> 'column', :name=> 'key3',:data=> [4, 3, 3, 9, 0])
+          f.series(:type=> 'spline',:name=> 'Average', :data=> [3, 2.67, 3, 6.33, 3.33])
+        end
+        @chart2 = LazyHighCharts::HighChart.new('pie') do |f|
+          f.chart({:defaultSeriesType=>"pie"} )
+          series = {
+            :type=> 'pie',
+            :name=> 'Browser share',
+            :data=> [
+              ['Key1',   45.0],
+              ['Key2',   26.8],
+              ['Key3',    8.5],
+              ['Key4',     6.2],
+              ['Key5',   0.7]
+            ]
+          }
+          f.series(series)
+          f.options[:title][:text] = "The keyword pie"
+          f.plot_options(:pie=>{
+            :allowPointSelect=>true, 
+            :cursor=>"pointer" , 
+            :dataLabels=>{
+              :enabled=>true,
+              :color=>"black",
+              :style=>{
+                :font=>"13px Trebuchet MS, Verdana, sans-serif"
+              }
+            }
+          })
+        end
+      end
     end
+    print ("EN INDEX")
   end
 
   # GET /events/1

@@ -15,4 +15,7 @@
 //= require twitter/bootstrap
 //= require bootstrap
 //= require turbolinks
+//= require highcharts/highcharts
+//= require highcharts/highcharts-more
+// require highcharts/highstock, generate a bug in test!
 //= require_tree .

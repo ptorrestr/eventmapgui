@@ -4,9 +4,7 @@
   </small>
   <nav>
     <ul>
-      <li><!-- Button to trigger modal -->
-        <a href="#modalAbout" data-toggle="modal">About</a>
-      </li>
+      <li><%= content_tag :a, "About", :href => "#modalAbout", :data => {:toggle => 'modal'} %></li>
       <li><%= link_to "Contact", "http://hujo.deri.ie/contact" %></li>
       <li><%= link_to "Hujo", "http://hujo.deri.ie" %></li>
     </ul>
