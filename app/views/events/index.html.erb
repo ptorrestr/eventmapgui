@@ -1,11 +1,55 @@
-<h1>Events</h1>
-<div class="row-fluid">
-  <div class="span12">
-    <div class="row-fluid">
-      <div class="span9">
-    <%= gmaps("map_options" => {"detect_location" => true, "auto_adjust" => "true", "auto_zoom" => false, "zoom" => 2, "detect_location" => false}, 
-        "markers" => {"data" => @json, "options" => {"rich_marker" => true, "do_clustering" => true } }) %>
-    <% content_for :scripts do %>
+<% provide(:title, 'Events') %>
+<%= content_tag :div, :class => "row-fluid" do %>
+  <%= content_tag :h1, "Events" %>
+  <%= content_tag :div, :class => "span12" do %>
+    <%= content_tag :div, :class => "row-fluid" do %>
+      <%= content_tag :div, :class => "span9" do %>
+        <%= gmaps("map_options" => {
+            "detect_location" => true,
+            "auto_adjust" => "true", 
+            "auto_zoom" => false, 
+            "zoom" => 2, 
+            "detect_location" => false}, 
+          "markers" => {
+            "data" => @json, 
+            "options" => {
+              "rich_marker" => true, 
+              "do_clustering" => true 
+            } 
+          }) %>
+      <% end %> <!-- div span9 -->
+      <%= content_tag :div, :class => "span3" do %>
+        lateral panel upper
+      <% end %> <!-- div span3 -->
+    <% end %> <!-- div row-fluid -->
+    <%= content_tag :div, :class => "row-fluid" do %>
+      <%= content_tag :div, :class => "span9" do %>
+        <% if @event %>
+        <h3> Event: <%= @event.name %></h3>
+        <% else %>
+        Please, select an event
+        <% end %>
+        <%= content_tag :div, :class => "row-fluid" do %>
+          <%= content_tag :div, :class => "span4", :id => "tweetsPanel" do %>
+            <% if @event %>
+              <%= render 'tweets_panel' %>
+            <% end %>
+          <% end %> <!-- div tweetsPanel -->
+          <%= content_tag :div, :class => "span8", :id => "summaryPanel" do %>
+            <% if @event %>
+              <%= render 'summary_panel' %>
+            <% end %>
+          <% end %> <!-- div summaryPanel -->
+        <% end %> <!-- div row-fluid -->
+      <% end %> <!-- div span9 -->
+      <%= content_tag :div, :class => "span3" do %> 
+        lateral panel bottom
+      <% end %> <!-- div span3 -->
+    <% end %> <!-- div row-fluid -->
+  <% end %> <!-- div span12 -->
+<% end %> <!-- div row-fluid -->
+
+<% content_for :scripts do %>
 <script type="text/javascript" charset="utf-8">
 handleMarkerClickClosure = function(marker) {
   return function() {
@@ -20,35 +64,4 @@ Gmaps.map.callback = function() {
   }
 };
 </script>
-    <% end %>
-      </div>
-      <div class="span3">lateral panel upper</div>
-    </div>
-    <div class="row-fluid">
-      <div class="span9">
-        <% if @event %>
-        <h3> Event: <%= @event.name %></h3>
-        <% else %>
-        Please, select an event
-        <% end %>
-        <div class="row-fluid">
-          <div class="span6" id="tweetsPanel">
-            <% if @event %>
-              <%= render 'tweets_panel' %>
-            <% end %>
-          </div>
-          <div class="span6" id="summaryPanel">
-            <% if @event %>
-              <%= render 'summary_panel' %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <div class="span3">lateral panel bottom</div>
-    </div>
-  </div>
-</div>
-
-  <!--<aside class="span4">
-    <%= render 'lateral_panel' %>
-  </aside>-->
+<% end %>

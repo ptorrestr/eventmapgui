@@ -1,9 +1,7 @@
 <% provide(:title, 'Home') %>
-<div class="center hero-unit">
-  <h1>Welcome to Event Map</h1>
-  <h4>
-    This app is developed by
-    <a href="http://hujo.deri.ie/">Digital Humanities and Journalism</a>
-    working group at DERI.
-  </h4>
- </div>
+<%= content_tag :div, :class => "center hero-unit" do %>
+  <%= content_tag :h1, "Welcome to Event Map" %>
+  <%= content_tag :h2 do %>
+    This app is developed by <%= link_to "Digital Humanities and Journalism", "http://hujo.deri.ie/" %> working group at DERI.
+  <% end %> <!-- h2 -->
+<% end %> <!-- div center hero-unit -->

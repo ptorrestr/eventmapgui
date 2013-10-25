@@ -17,7 +17,7 @@ class EventsController < ApplicationController
         params[:summary] = "false"
         @chart1 = LazyHighCharts::HighChart.new('graph') do |f|
           f.title({ :text=>"Keyword mentions"})
-          f.options[:xAxis][:categories] = ['Mon', 'Tues', 'Weds', 'Thurs', 'Fri']      
+          f.options[:xAxis][:categories] = ['Mon', 'Tues', 'Weds', 'Thurs', 'Fri']
           f.series(:type=> 'column',:name=> 'key1',:data=> [3, 2, 1, 3, 4])
           f.series(:type=> 'column',:name=> 'key2',:data=> [2, 3, 5, 7, 6])
           f.series(:type=> 'column', :name=> 'key3',:data=> [4, 3, 3, 9, 0])
