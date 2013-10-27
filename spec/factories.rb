@@ -15,4 +15,13 @@ FactoryGirl.define do
     twitter_screen_name "name"
     twitter_profile_image_url "http://diggwithme.files.wordpress.com/2012/09/new-default-twitter-avatar.jpg"
   end
+
+  factory :video do
+    url "//www.youtube.com/embed/c0L0WIK2Ync"
+  end
+
+  factory :image do
+    url "http://www.flickr.com/photos/54413120@N04/10416220975/"
+  end
+
 end

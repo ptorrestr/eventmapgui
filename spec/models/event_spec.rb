@@ -12,6 +12,8 @@ describe Event do
   it { should respond_to(:alert) }
   it { should respond_to(:gmaps) }
   it { should respond_to(:tweets) }
+  it { should respond_to(:videos) }
+  it { should respond_to(:images) }
 
   it { should be_valid }
 
@@ -72,6 +74,52 @@ describe Event do
       expect(tweets).not_to be_empty
       tweets.each do |tweet|
         expect(Tweet.where(id: tweet.id)).to be_empty
+      end
+    end
+  end
+
+  describe "videos associations" do
+    before { @event.save }
+    let!(:older_video) do
+      FactoryGirl.create(:video, event: @event, created_at: 1.day.ago)
+    end
+    let!(:newer_video) do
+      FactoryGirl.create(:video, event: @event, created_at: 1.hour.ago)
+    end
+
+    it "should have the right videos in the right order" do
+      expect(@event.videos.to_a).to eq [newer_video, older_video]
+    end
+
+    it "should destroy associated videos" do
+      videos = @event.videos.to_a
+      @event.destroy
+      expect(videos).not_to be_empty
+      videos.each do |video|
+        expect(Video.where(id: video.id)).to be_empty
+      end
+    end
+  end
+
+  describe "images associations" do
+    before { @event.save }
+    let!(:older_image) do
+      FactoryGirl.create(:image, event: @event, created_at: 1.day.ago)
+    end
+    let!(:newer_image) do
+      FactoryGirl.create(:image, event: @event, created_at: 1.hour.ago)
+    end
+
+    it "should have the right images in the right order" do
+      expect(@event.images.to_a).to eq [newer_image, older_image]
+    end
+
+    it "should destroy associated images" do
+      images = @event.images.to_a
+      @event.destroy
+      expect(images).not_to be_empty
+      images.each do |image|
+        expect(Image.where(id: image.id)).to be_empty
       end
     end
   end

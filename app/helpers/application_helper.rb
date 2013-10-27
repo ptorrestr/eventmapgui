@@ -8,4 +8,9 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end
+
+  def video_frame_id(id)
+    base_id = "video"
+    "#{base_id}#{id.to_s}"
+  end
 end

@@ -25,6 +25,17 @@ namespace :db do
         tweet.twitter_profile_image_url = "http://diggwithme.files.wordpress.com/2012/09/new-default-twitter-avatar.jpg"
         tweet.event_id = event.id
       end
+
+      Video.populate 100 do |video|
+        video.url = "//www.youtube.com/embed/c0L0WIK2Ync"
+	video.event_id = event.id
+      end
+
+      Image.populate 100 do |image|
+        image.url = "http://www.flickr.com/photos/54413120@N04/10416220975/"
+        image.event_id = event.id
+      end
+
     end
   end
 end

@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
   acts_as_gmappable
 
   has_many :tweets, dependent: :destroy
+  has_many :videos, dependent: :destroy
+  has_many :images, dependent: :destroy
   validates :address, presence: true
   validates :gmaps, presence: true
   validates :latitude, presence: true

@@ -1,5 +1,33 @@
-$("#tweetsPanel").html("<%= escape_javascript(render("tweets_panel")) %>");
-<% if @summary %>
+<% if @summary_flag %>
+  <% params.delete :summary %>
   $("#summaryPanel").html("<%= escape_javascript(render("summary_panel")) %>");
+<% end %>
+<% if @tweets_flag %>
+  <% params[:tweets] = true %>
+  <% params.delete :statistics %>
+  <% params.delete :videos %>
+  <% params.delete :images %>
+  $("#tweetsPanel").html("<%= escape_javascript(render("tweets_panel")) %>");
+<% end %>
+<% if @statistics_flag %>
+  <% params[:statistics] = true %>
+  <% params.delete :tweets %>
+  <% params.delete :videos %>
+  <% params.delete :images %>
+  $("#statistics").html("<%= escape_javascript(render("statistics_panel")) %>");
+<% end %>
+<% if @videos_flag %>
+  <% params[:videos] = true %>
+  <% params.delete :tweets %>
+  <% params.delete :statistics %>
+  <% params.delete :images %>
+  $("#videos").html("<%= escape_javascript(render("videos_panel")) %>");
+<% end %>
+<% if @images_flag %>
+  <% params[:images] = true %>
+  <% params.delete :tweets %>
+  <% params.delete :statistics %>
+  <% params.delete :videos %>
+  $("#images").html("<%= escape_javascript(render("images_panel")) %>");
 <% end %>
 $.setAjaxPagination();

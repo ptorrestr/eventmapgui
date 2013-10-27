@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131022110807) do
+ActiveRecord::Schema.define(version: 20131027145723) do
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20131022110807) do
 
   add_index "events", ["name"], name: "index_events_on_name", unique: true
 
+  create_table "images", force: true do |t|
+    t.string   "url"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["event_id"], name: "index_images_on_event_id"
+
   create_table "tweets", force: true do |t|
     t.integer  "twitter_id"
     t.string   "twitter_text"
@@ -39,5 +48,14 @@ ActiveRecord::Schema.define(version: 20131022110807) do
 
   add_index "tweets", ["created_at"], name: "index_tweets_on_created_at"
   add_index "tweets", ["event_id"], name: "index_tweets_on_event_id"
+
+  create_table "videos", force: true do |t|
+    t.string   "url"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "videos", ["event_id"], name: "index_videos_on_event_id"
 
 end

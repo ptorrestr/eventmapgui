@@ -53,7 +53,7 @@
 <script type="text/javascript" charset="utf-8">
 handleMarkerClickClosure = function(marker) {
   return function() {
-    $.get(this.href, {id: marker.title, summary: true}, null, 'script');
+    $.get(this.href, {id: marker.title, page: 1, summary: true, tweets: true, statistics: true, videos: true, images: true}, null, 'script');
     return false;
   }
 };

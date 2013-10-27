@@ -6,15 +6,24 @@ class EventsController < ApplicationController
     @json = @events.to_gmaps4rails do |event, marker|
       marker.title "#{event.id}"
     end
-    # This value is used to send to js reaload summary
-    @summary = false 
+    # This value is used to send to js reaload actions
+    @summary_flag = false 
+    @tweets_flag = false
+    @statistics_flag = false
+    @videos_flag = false
+    @images_flag = false
     if params.has_key?(:id)
       @event = Event.find(params[:id])
-      @tweets = @event.tweets.paginate(page: params[:page], per_page: 10)
       if params[:summary] == "true"
         #The parameter needs reaload summary, activate @summary and set false the parameter
-        @summary = true
-        params[:summary] = "false"
+        @summary_flag = true
+      end
+      if params[:tweets] == "true"
+        @tweets_flag = true
+        @tweets = @event.tweets.paginate(page: params[:page], per_page: 10)
+      end
+      if params[:statistics] == "true"
+        @statistics_flag = true
         @chart1 = LazyHighCharts::HighChart.new('graph') do |f|
           f.title({ :text=>"Keyword mentions"})
           f.options[:xAxis][:categories] = ['Mon', 'Tues', 'Weds', 'Thurs', 'Fri']
@@ -51,8 +60,15 @@ class EventsController < ApplicationController
           })
         end
       end
+      if params[:videos] == "true"
+        @videos_flag = true
+        @videos = @event.videos.paginate(page: params[:page], per_page: 10)
+      end
+      if params[:images] == "true"
+        @images_flag = true
+        @images = @event.images.paginate(page: params[:page], per_page: 10)
+      end
     end
-    print ("EN INDEX")
   end
 
   # GET /events/1

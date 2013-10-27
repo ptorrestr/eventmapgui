@@ -1,6 +1,6 @@
 <%= page_entries_info @tweets %>
-<%= will_paginate @tweets, :remote => true, :page_links => false %>  
+<%= will_paginate @tweets, :remote => true, :page_links => false %>
   <ol class="microposts">
     <%= render partial: 'shared/tweet_item', collection: @tweets %>
   </ol>
-<%= will_paginate @tweets, :remote => true, :page_links => false %>  
+<%= will_paginate @tweets, :remote => true, :page_links => false %>
