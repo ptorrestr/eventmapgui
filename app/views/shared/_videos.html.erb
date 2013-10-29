@@ -1,0 +1,21 @@
+<%= content_tag :div, :class => "row-fluid" do %>
+  <%= content_tag :div, :class => "span10 offset1" do %>
+    <%= page_entries_info @videos %>
+  <% end %> <!-- div span10 offset1 -->
+  <%= content_tag :div, :class => "span10 offset1" do %>
+    <%= will_paginate @videos, :remote => true, :page_links => false %>
+  <% end %> <!-- div span10 offset1 -->
+  <%= content_tag :div, :class => "span10 offset1" do %>
+    <%= render partial: 'shared/video_item', collection: @videos %>
+  <% end %> <!-- div span10 offset1 -->
+  <%= content_tag :div, :class => "span10 offset1" do %>
+    <%= will_paginate @videos, :remote => true, :page_links => false %>
+  <% end %> <!-- div span10 offset1 -->
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+function setIframeHeight( iframeId ) {
+  var height = $(iframeId).parent().parent().parent().parent().width() * 0.8;
+  $(iframeId).height(height)
+}
+</script>

@@ -1,0 +1,7 @@
+<%= content_tag :ul, :class => "tumbnails" do %>
+  <%= content_tag :li, :class => "span10", :id => image_item.id do %>
+    <%= content_tag :div, :class => "thumbnail" do %>
+      <%= link_to "Rest ~explored~", image_item.url, :class => "embedly-card" %>
+    <% end %> <!-- div thumbnail -->
+  <% end %> <!-- li span10 -->
+<% end %> <!-- ul tumbnails -->

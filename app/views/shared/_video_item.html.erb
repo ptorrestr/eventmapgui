@@ -1,0 +1,18 @@
+<%= content_tag :ul, :class => "tumbnails" do %>
+  <%= content_tag :li, :class => "span10", :id => video_item.id do %>
+    <%= content_tag :div, :class => "thumbnail" do %>
+      <%= content_tag(
+        :iframe, 
+        '', 
+        :id => video_frame_id(video_item.id), 
+        :onload => "setIframeHeight(" + video_frame_id(video_item.id) + ")", 
+        :width => "100%", 
+        :src => video_item.url, 
+        :frameborder => "0", 
+        :webkitallowfullscreen => "true", 
+        :mozallowfullscreen => "true", 
+        :allowfullscreen => "true"
+        ).html_safe %>
+    <% end %> <!-- div thumbnail -->
+  <% end %> <!-- li span10 -->
+<% end %> <!-- ul thumnails -->

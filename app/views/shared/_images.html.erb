@@ -1,0 +1,24 @@
+<%= content_tag :div, :class => "row-fluid" do %>
+  <%= content_tag :div, :class => "span10 offset1" do %>
+    <%= page_entries_info @images %>
+  <% end %> <!-- div span10 offset1 -->
+  <%= content_tag :div, :class => "span10 offset1" do %>
+    <%= will_paginate @images, :remote => true, :page_links => false %>
+  <% end %> <!-- div span10 offset1 -->
+  <%= content_tag :div, :class => "span10 offset1" do %>
+    <%= render partial: 'shared/image_item', collection: @images %>
+  <% end %> <!-- div span10 offset1 -->
+  <%= content_tag :div, :class => "span10 offset1" do %>
+    <%= will_paginate @images, :remote => true, :page_links => false %>
+  <% end %> <!-- div span10 offset1 -->
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+!function(a) {
+  var b="embedly-platform",c="script";
+  var d = a.createElement(c);
+  d.id = b, d.src=("https:"===document.location.protocol?"https":"http")+"://cdn.embedly.com/widgets/platform.js";
+  var e = document.getElementsByTagName(c)[0];
+  e.parentNode.insertBefore(d,e)  
+}(document);
+</script>

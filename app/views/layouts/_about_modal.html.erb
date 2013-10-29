@@ -1,0 +1,5 @@
+<%= modal_dialog :id => "modalAbout",
+  :header => { :show_close => true, :dismiss => 'modal', :title => 'About us' },
+  :body   => 'Create by Digital Humanities and Journalism working group at DERI in NUI Galway.
+      More about...',
+  :footer => content_tag(:button, 'ok', :class => 'btn', :"data-dismiss" => 'modal') %>
