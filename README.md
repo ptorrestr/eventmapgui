@@ -8,5 +8,6 @@ rake db:migrate
 
 #install bootstrap, less
 rails generate bootstrap:install less
+rake assets:precompile
 
 rake db
